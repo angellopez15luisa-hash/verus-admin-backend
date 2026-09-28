@@ -1,4 +1,4 @@
-export { CustomError, MessageResponse } from "./custom";
+export { CustomError, MessageResponse } from "./custom.type";
 export {
   User,
   UserSignInBody,
@@ -10,3 +10,10 @@ export {
   UserResetPasswordBody,
   UserUpdatePasswordBody,
 } from "./user.type";
+export {
+  GeneralSetting,
+  GeneralSettingDataResponse,
+  GeneralSettingResponse,
+  GeneralSettingUpdateBody,
+  GeneralSettingUpdateParams
+} from "./general-setting.type";

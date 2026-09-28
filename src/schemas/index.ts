@@ -6,6 +6,14 @@ export {
   userSignInSchema,
   userUpdatePasswordSchema,
   userVerifyResetTokenSchema,
-    userGenerateJWTSchema,
-  userSignInResponseSchema
+  userGenerateJWTSchema,
+  userSignInResponseSchema,
 } from "./user.schema";
+export {
+  socialLinkSchema,
+  bannerSchema,
+  generalSettingDataResponseSchema,
+  generalSettingResponseSchema,
+  generalSettingSchema,
+  generalSettingUpdateSchema
+} from "./general-setting.schema";

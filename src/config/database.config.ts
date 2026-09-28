@@ -1,17 +1,22 @@
 import { Sequelize } from "sequelize";
 import "dotenv/config";
-import { User, initUserModel } from "../models";
+import {
+  User,
+  initUserModel,
+  GeneralSetting,
+  initGeneralSettingModel,
+} from "../models";
 import { ENV } from "./env.config";
 
-const dbConfig = require("../../db/config");
+// const dbConfig = require("../../db/config");
 
-const env = ENV.NODE.NODE_ENV;
+// const env = ENV.NODE.NODE_ENV;
 
-const config = (dbConfig as any)[env];
+// const config = (dbConfig as any)[env];
 
-if (!config) {
-  throw new Error(`No se encontro la confguracion para el entorno: ${env}`);
-}
+// if (!config) {
+//   throw new Error(`No se encontro la confguracion para el entorno: ${env}`);
+// }
 
 const dbConnection = new Sequelize(ENV.DB.NAME, ENV.DB.USER, ENV.DB.PASSWORD, {
   host: ENV.DB.HOST,
@@ -24,21 +29,23 @@ const dbConnection = new Sequelize(ENV.DB.NAME, ENV.DB.USER, ENV.DB.PASSWORD, {
   },
 });
 
-initUserModel(dbConnection)
+initUserModel(dbConnection);
+initGeneralSettingModel(dbConnection);
 
 const models = {
-    User
-}
+  User,
+  GeneralSetting,
+};
 
 Object.values(models).forEach((model: any) => {
-     if (typeof model.associate === 'function') {
-        model.associate(models)
-    } 
-})
+  if (typeof model.associate === "function") {
+    model.associate(models);
+  }
+});
 
-export type DBModels = typeof models
+export type DBModels = typeof models;
 
-export { dbConnection, User }
+export { dbConnection, User, GeneralSetting };
 
 export const testConnection = async () => {
   try {
