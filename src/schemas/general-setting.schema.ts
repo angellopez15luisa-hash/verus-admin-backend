@@ -134,12 +134,39 @@ export const informationAditionalSchema = z.object({
     .string({ message: "* El texto del boton de verifcacion debe ser texto" })
     .min(1, { message: "* El texto del boton de verificacion debe ser texto" }),
   iframe_map_contact: z
-  .string({ message: "El iframe debe ser texto" })
-  .min(1, { message: "El iframe es requerido" })
-  .refine(
-    (val) => val.trim().startsWith('<iframe') && val.trim().endsWith('</iframe>'),
-    { message: "El código debe ser un elemento iframe válido de Google Maps" }
-  )
+    .string({ message: "El iframe debe ser texto" })
+    .min(1, { message: "El iframe es requerido" })
+    .refine(
+      (val) =>
+        val.trim().startsWith("<iframe") && val.trim().endsWith("</iframe>"),
+      {
+        message: "El código debe ser un elemento iframe válido de Google Maps",
+      },
+    ),
+  title_seo: z
+    .string({ message: "El título SEO debe ser texto" })
+    .min(1, { message: "El título SEO es requerido" })
+    .max(60, { message: "El título SEO no debe exceder los 60 caracteres" }),
+  description_seo: z
+    .string({ message: "La descripción SEO debe ser texto" })
+    .min(1, { message: "La descripción SEO es requerida" })
+    .max(160, {
+      message: "La descripción SEO no debe exceder los 160 caracteres",
+    }),
+  keywords_seo: z
+    .string({ message: "Las keywords deben ser texto" })
+    .min(1, { message: "Las keywords son requeridas" }),
+  ogTitle_title_seo: z
+    .string({ message: "El Open Graph title debe ser texto" })
+    .min(1, { message: "El Open Graph title es requerido" }),
+  ogDescription_seo: z
+    .string({ message: "El Open Graph description debe ser texto" })
+    .min(1, { message: "El Open Graph description es requerido" }),
+  twitterCard_seo: z.string(),
+  image: z
+    .string({ message: "La imagen de Twitter debe ser texto" })
+    .min(1, { message: "La imagen de Twitter es requerida" })
+    .url({ message: "Debe ser una URL válida" }),
 });
 
 export const informationContactSchema = z.object({

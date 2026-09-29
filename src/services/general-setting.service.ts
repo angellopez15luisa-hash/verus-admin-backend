@@ -28,7 +28,7 @@ export class GeneralSettingService {
     return generalSetting;
   };
 
- static update = async (
+static update = async (
     id: GeneralSettingType["id"],
     data: GeneralSettingUpdateBody,
   ): Promise<string> => {
@@ -54,6 +54,7 @@ export class GeneralSettingService {
     };
 
     for (const [key, value] of Object.entries(data)) {
+      // 1. SI ES UN ARRAY (Tus carruseles, listas, etc.)
       if (Array.isArray(value)) {
         let rawOldValue =
           generalSetting?.dataValues?.[key] ?? generalSetting?.[key];
@@ -151,6 +152,28 @@ export class GeneralSettingService {
             }
           }
         }
+      } 
+      
+      // 2. SI ES UN OBJETO PLANO (Para secciones de configuración como Información Adicional / SEO que manejan 'image')
+      else if (value && typeof value === "object") {
+        const updatedObject = { ...value };
+
+        for (const [subKey, subVal] of Object.entries(updatedObject)) {
+          if (subKey === "image" && typeof subVal === "string" && subVal.startsWith("data:image")) {
+            console.log(`[Backend] Detectado Base64 en objeto ${key}.${subKey}, subiendo a Cloudinary...`);
+            const cloudinaryUrl = await uploadToCloudinary(subVal);
+            updatedObject[subKey] = cloudinaryUrl;
+          }
+        }
+
+        data[key] = updatedObject;
+      }
+
+      // 3. SI VIENE COMO UN CAMPO PLANO DIRECTO EN LA RAÍZ
+      else if (key === "image" && typeof value === "string" && value.startsWith("data:image")) {
+        console.log(`[Backend] Detectado Base64 plano en la raíz [${key}], subiendo a Cloudinary...`);
+        const cloudinaryUrl = await uploadToCloudinary(value);
+        data[key] = cloudinaryUrl;
       }
     }
 
