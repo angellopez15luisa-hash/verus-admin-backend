@@ -4,7 +4,7 @@ import "dotenv/config";
 export const corsConfig: CorsOptions = {
   origin: (origin, callback) => {
     const whitelist: Array<string | undefined> = [
-      process.env.FRONTEND_URL_3000,
+      process.env.FRONTEND_URL_LANDING,
       process.env.FRONTEND_URL_5176,
       process.env.FRONTEND_URL_5175,
       process.env.FRONTEND_URL_5174,
