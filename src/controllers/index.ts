@@ -1,2 +1,3 @@
-export { UserController } from './user.controller'
-export { GeneralSettingController } from './general-setting.controller'
+export { UserController } from "./user.controller";
+export { GeneralSettingController } from "./general-setting.controller";
+export { ContactController } from "./contact.controller";

@@ -17,3 +17,5 @@ export {
   generalSettingSchema,
   generalSettingUpdateSchema
 } from "./general-setting.schema";
+
+export { contactSchema,contactSendEmailSchema } from './contact.schema'

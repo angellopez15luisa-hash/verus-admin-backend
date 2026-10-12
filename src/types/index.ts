@@ -17,3 +17,5 @@ export {
   GeneralSettingUpdateBody,
   GeneralSettingUpdateParams
 } from "./general-setting.type";
+
+export { ContactSendEmailBody } from './contact.type'
