@@ -9,8 +9,6 @@ export class ContactController {
     next: NextFunction,
   ): Promise<void> => {
     try {
-      
-
       await sendContactEmail(req.body);
       res.status(200).json({
         success: true,

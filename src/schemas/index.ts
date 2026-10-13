@@ -15,7 +15,9 @@ export {
   generalSettingDataResponseSchema,
   generalSettingResponseSchema,
   generalSettingSchema,
-  generalSettingUpdateSchema
+  generalSettingUpdateSchema,
 } from "./general-setting.schema";
 
-export { contactSchema,contactSendEmailSchema } from './contact.schema'
+export { contactSchema, contactSendEmailSchema } from "./contact.schema";
+
+export { bookingSchema, bookingSendEmailSchema } from "./booking.schema";

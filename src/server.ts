@@ -6,13 +6,14 @@ import cors from "cors";
 import { corsConfig } from "./config";
 import userRoutes from "./routes/user.route";
 import generalSettingRoutes from "./routes/general-setting.route";
-import contactRoutes from './routes/contact.route'
+import contactRoutes from "./routes/contact.route";
+import bookingRoutes from "./routes/booking.route";
 import { CustomError } from "./types";
 
 const app = express();
 
-app.use(express.json({ limit: '20mb' }));
-app.use(express.urlencoded({ limit: '20mb', extended: true }));
+app.use(express.json({ limit: "20mb" }));
+app.use(express.urlencoded({ limit: "20mb", extended: true }));
 
 app.use(cors(corsConfig));
 app.use(morgan("dev"));
@@ -35,7 +36,8 @@ const antiCacheMiddleware = (
 
 app.use("/api/users", antiCacheMiddleware, userRoutes);
 app.use("/api/general-settings", antiCacheMiddleware, generalSettingRoutes);
-app.use('/api/contacts',antiCacheMiddleware,contactRoutes)
+app.use("/api/contacts", antiCacheMiddleware, contactRoutes);
+app.use("/api/bookings", antiCacheMiddleware, bookingRoutes);
 
 app.use((req: Request, res: Response, next: NextFunction) => {
   res.status(404).send("¡Ruta no encontrada!");

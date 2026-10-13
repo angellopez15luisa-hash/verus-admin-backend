@@ -15,7 +15,9 @@ export {
   GeneralSettingDataResponse,
   GeneralSettingResponse,
   GeneralSettingUpdateBody,
-  GeneralSettingUpdateParams
+  GeneralSettingUpdateParams,
 } from "./general-setting.type";
 
-export { ContactSendEmailBody } from './contact.type'
+export { ContactSendEmailBody } from "./contact.type";
+
+export { BookingSendEmailBody } from "./booking.type";
